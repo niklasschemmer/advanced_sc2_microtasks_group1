@@ -1,4 +1,3 @@
-from unicodedata import name
 import tensorflow as tf
 from pysc2.lib import actions
 from tensorflow import keras
