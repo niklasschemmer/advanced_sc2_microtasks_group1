@@ -1,6 +1,6 @@
 # Advanced Starcraft2 Microtasks
 
-This project is a reinforcement learning approach to the popular online RTS StarCraft2.
+This project is a reinforcement learning approach to the popular online RTS StarCraftII.
 It uses the proximal policy optimization according to [keras implementation](https://keras.io/examples/rl/ppo_cartpole/).
 We conducted the project as a part of the course "Deep reinforcement learning" course at the University of Osnabrück in the summer semester 2022 by Nick Lechtenbörger, Niklas Schemmer and Johannes Weißen.
 
@@ -18,6 +18,12 @@ Before you start the program, define wether you want to test your model or if yo
 There you can also change the training parameters.
 Simply change the corresponding value in the FLAGS object in the main.py file.
 Or pass them as command line parameters directly from the console.
+
+Important !!
+Before you start the program for the first time you need to add the minigame map to your StarCraftII maps folder.
+StarCraftII should usually be in some programs folder.
+The relative folder where to put the minigame map is '~\StarCraft II\Maps\mini_games'.
+You will find the minigame maps in '\sc2_minigame_maps'.
 
 ## Start Program
 
