@@ -9,6 +9,7 @@ from pysc2.lib import features
 _SCREEN_PLAYER_ID = features.SCREEN_FEATURES.player_id.index
 _SCREEN_UNIT_TYPE = features.SCREEN_FEATURES.unit_type.index
 
+# Array with all screen features that should be used for this training purpose
 usable_screen_features = np.array([
     #  'placeholder',
     #  'height_map',
@@ -41,9 +42,15 @@ usable_screen_features = np.array([
 
 
 def preprocess_screen(screen):
+    """
+    Preprocess screen, to normalize it and putting all screen features into proper formats
+
+    Parameter screen: The unprocessed screen, extracted from the observation of the environment.
+    """
     layers = []
     assert screen.shape[0] == len(features.SCREEN_FEATURES)
     for i in range(len(features.SCREEN_FEATURES)):
+        # Sort out not used screen features
         if features.SCREEN_FEATURES[i].name in usable_screen_features:
             if i == _SCREEN_PLAYER_ID or i == _SCREEN_UNIT_TYPE:
                 layers.append(screen[i:i + 1] /
@@ -62,9 +69,15 @@ def preprocess_screen(screen):
 
 
 def screen_channel():
+    """
+    Get total amount of channel from all existing screen features
+    """
     c = 0
     for i in range(len(features.SCREEN_FEATURES)):
+        # Sort out not used screen features
         if features.SCREEN_FEATURES[i].name in usable_screen_features:
+            # For player or scalar features increase channels by one and for
+            # scalar values by the scale amount
             if i == _SCREEN_PLAYER_ID or i == _SCREEN_UNIT_TYPE:
                 c += 1
             elif features.SCREEN_FEATURES[i].type == features.FeatureType.SCALAR:
